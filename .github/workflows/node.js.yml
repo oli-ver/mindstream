@@ -25,4 +25,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run web-release
+    
+    - name: Zip web release
+      uses: TheDoctor0/zip-release@0.4.1
+      with:
+        # Filename for archive
+        filename: mindstream-web.zip
+        # Working directory before zipping
+        directory: platforms/web
       
