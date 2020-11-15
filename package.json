@@ -54,6 +54,7 @@
         "material-design-icons-iconfont": "~5.0.1",
         "moment": "~2.24.0",
         "nativescript-appversion": "~1.4.2",
+        "nativescript-camera": "~4.5.0",
         "nativescript-foss-sidedrawer": "file:plugins/nativescript-foss-sidedrawer-2.0.0.tgz",
         "nativescript-imagepicker": "file:plugins/nativescript-imagepicker-7.1.0.tgz",
         "nativescript-iqkeyboardmanager": "~1.5.1",
