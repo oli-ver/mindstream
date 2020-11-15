@@ -41,14 +41,15 @@ jobs:
         name: mindstream-web
         # A file, directory or wildcard pattern that describes what to upload
         path: mindstream-web.zip
-                
-    
-    - name: GitVersion
-      id: gitversion
-      uses: nmcc/actions/gitversion@v1
-      with:
-        path-to-gitversion: packages/GitVersion.CommandLine/tools/GitVersion.exe
 
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.4
+      with:
+        versionSpec: '5.3.x'
+    - name: Use GitVersion
+      id: gitversion # step id used as reference for output values
+      uses: gittools/actions/gitversion/execute@v0.9.4
+ 
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
