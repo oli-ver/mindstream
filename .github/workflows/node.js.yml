@@ -33,4 +33,38 @@ jobs:
         filename: mindstream-web.zip
         # Working directory before zipping
         directory: platforms/web
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.1
+      with:
+        # Artifact name
+        name: mindstream-web
+        # A file, directory or wildcard pattern that describes what to upload
+        path: mindstream-web.zip
+                
+    
+    - name: GitVersion
+      id: gitversion
+      uses: nmcc/actions/gitversion@v1
+      with:
+        path-to-gitversion: packages/GitVersion.CommandLine/tools/GitVersion.exe
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      with:
+          tag_name: ${{ steps.gitversion.outputs.SemVer }}
       
+    - name: Upload a Release Asset
+      uses: actions/upload-release-asset@v1.0.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        # The URL for uploading assets to the release
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        # The path to the asset you want to upload
+        asset_path: .
+        # The name of the asset you want to upload
+        asset_name: mindstream-web.zip
+        # The content-type of the asset you want to upload. See the supported Media Types here: https://www.iana.org/assignments/media-types/media-types.xhtml for more information
+        asset_content_type: zip
