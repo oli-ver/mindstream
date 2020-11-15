@@ -27,6 +27,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+    - run: pip install six
     - run: npm i -g nativescript
     - run: tns doctor
     - run: npm run ios-unsigned
