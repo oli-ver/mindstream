@@ -37,14 +37,6 @@ jobs:
         # Working directory before zipping
         directory: platforms/web
 
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2.2.1
-      with:
-        # Artifact name
-        name: mindstream-web
-        # A file, directory or wildcard pattern that describes what to upload
-        path: mindstream-web.zip
-
     - name: Install GitVersion
       uses: gittools/actions/gitversion/setup@v0.9.4
       with:
@@ -70,7 +62,7 @@ jobs:
         # The URL for uploading assets to the release
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         # The path to the asset you want to upload
-        asset_path: ./mindstream-web.zip
+        asset_path: platforms/web/mindstream-web.zip
         # The name of the asset you want to upload
         asset_name: mindstream-web.zip
         # The content-type of the asset you want to upload. See the supported Media Types here: https://www.iana.org/assignments/media-types/media-types.xhtml for more information
