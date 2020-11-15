@@ -27,15 +27,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: npm run web-release
-    
-    - name: Zip web release
-      uses: TheDoctor0/zip-release@0.4.1
-      with:
-        # Filename for archive
-        filename: mindstream-web.zip
-        # Working directory before zipping
-        directory: platforms/web
+    - run: npm run ios-unsigned
 
     - name: Install GitVersion
       uses: gittools/actions/gitversion/setup@v0.9.4
@@ -62,8 +54,8 @@ jobs:
         # The URL for uploading assets to the release
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         # The path to the asset you want to upload
-        asset_path: platforms/web/mindstream-web.zip
+        asset_path: platforms/ios/*.ipa
         # The name of the asset you want to upload
-        asset_name: mindstream-web.zip
+        asset_name: mindstream-${{ steps.gitversion.outputs.SemVer }}.ipa
         # The content-type of the asset you want to upload. See the supported Media Types here: https://www.iana.org/assignments/media-types/media-types.xhtml for more information
         asset_content_type: zip
